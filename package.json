@@ -1,0 +1,13 @@
+{
+	"name": "theme-shifter",
+	"version": "0.2.1",
+	"description": "Modifies the hue, saturation, and lightness values of all (hex) colors in a JSON object of unknown depth, or a css file.",
+	"main": "cts.js",
+	"dependencies": {
+		"cssjson": "^2.1.3",
+		"yargs": "^15.1.0"
+	},
+	"devDependencies": {},
+	"author": "sub-Void",
+	"license": "MIT"
+}
