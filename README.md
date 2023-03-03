@@ -2,10 +2,8 @@
 Modifies the hue, saturation, and lightness of all hex color values in a JSON object of unknown depth, or css file.
 In progress.
 
-Current state:
-- .css hex value conversion  
-- .json traversing and hex value conversion
-
+Current state of this branch:
+- processJSON() is working. alters hex values within a json object.
 
 
 ##### Options:
