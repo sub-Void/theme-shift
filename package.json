@@ -9,5 +9,6 @@
 	},
 	"devDependencies": {},
 	"author": "sub-Void",
-	"license": "MIT"
+	"license": "MIT",
+	"type": "module"
 }
