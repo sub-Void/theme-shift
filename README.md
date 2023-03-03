@@ -20,8 +20,6 @@ Current state of this branch:
                                                            
   --lightness, -l   desired shift in lightness. example: -10            [number]
                                                            
-  --verbose, -v     lists all original and modified hex values          [boolean]
-                                                      
   --help            Show this list                                      [boolean]
 
 

@@ -4,12 +4,16 @@ export const shiftHex = (hex, hue = 0, sat = 0, lit = 0) => {
     let alpha = '';
 
     // alter shorthand values to regular ones
-    let copy = '';
     if (hex.length <= 4) {
+        let copy = '';
         for (let i = 0; i < hex.length; i++) {
             copy = copy + hex[i] + hex[i];
         }
         hex = copy;
+    }
+
+    if (hex.length == 5) {
+        return '#' + hex
     }
 
     // remove and store alpha value

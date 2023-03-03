@@ -1,4 +1,5 @@
 import * as converters from './converters.js'
+import cssjson from 'cssjson';
 
 // Recursively find and alter all hex color values from a json object
 export function processJSON(obj, hue = 0, sat = 0, lit = 0, indent = '') {
@@ -11,9 +12,7 @@ export function processJSON(obj, hue = 0, sat = 0, lit = 0, indent = '') {
 				// Hex value found!
 				const colors = obj[i].match(hexColorRegex);
 				for (let j = 0; j < colors.length; j++) {
-					console.log(obj[i])
 					obj[i] = obj[i].replace(colors[j], converters.shiftHex(colors[j], hue, sat, lit));
-					console.log(obj[i])
 				}
 			}
 		}
@@ -22,6 +21,9 @@ export function processJSON(obj, hue = 0, sat = 0, lit = 0, indent = '') {
 }
 
 // Finds and shifts all hex color values from a json object
-export function processCSS() {
-	return
+export function processCSS(data, hue = 0, sat = 0, lit = 0) {
+	data = cssjson.toJSON(data);
+	data = processJSON(data, hue, sat, lit)
+	data = cssjson.toCSS(data);
+	return data
 }
