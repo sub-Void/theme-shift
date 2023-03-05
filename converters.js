@@ -103,6 +103,10 @@ export const hueToRgb = (p, q, t) => {
     return p;
 };
 
+const toHex = x => {
+    const hex = Math.min(x, 255).toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+};
 
 export const hslToHex = ([h, s, l]) => {
     h /= 360;
@@ -118,13 +122,36 @@ export const hslToHex = ([h, s, l]) => {
         g = hueToRgb(p, q, h);
         b = hueToRgb(p, q, h - 1 / 3);
     }
-    const toHex = x => {
-        const hex = Math.round(x * 255).toString(16);
-        return hex.length === 1 ? '0' + hex : hex;
-    };
+    r = Math.round(r * 255)
+    g = Math.round(g * 255)
+    b = Math.round(b * 255)
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 
 export const hexToHsl = (hex) => {
-    return rgbToHsl(hexToRgb(hex))
+    return rgbToHsl(hexToRgb(hex));
+}
+
+export const rgbToHex = (rgb) => {
+    let alpha = ''
+    if (rgb[3]) alpha = toHex(rgb[3])
+
+    return `#${toHex(rgb[0])}${toHex(rgb[1])}${toHex(rgb[2])}${alpha}`;
+}
+
+export const stringToRgb = (str) => {
+    str = str.substring(str.indexOf('(') + 1, str.indexOf(')'));
+    str = str.replaceAll(/\,|\//g, ' ')
+    let rgbArray = str.split(/(\s+)/).filter(function (e) { return e.trim().length > 0; });
+
+    for (let x in rgbArray) {
+        if (/(\d+)%$/.test(rgbArray[x])) { // percentage values
+            rgbArray[x] = rgbArray[x].replace('%', '');
+            rgbArray[x] = Math.round((rgbArray[x] / 100) * 255)
+        } else if (/^0?(\.)\d+$/.test(rgbArray[x])) { // fraction values
+            rgbArray[x] = Math.round(rgbArray[x] * 255)
+        } else
+            rgbArray[x] = parseFloat(rgbArray[x])
+    }
+    return rgbArray;
 }

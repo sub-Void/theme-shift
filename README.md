@@ -4,6 +4,7 @@ In progress.
 
 Current state of this branch:
 - processJSON() is working. alters hex values within a json object.
+- processCSS() is working for hex values and rgb/a values. 
 
 
 ##### Options:
@@ -25,5 +26,5 @@ Current state of this branch:
 
 ##### Todo:
 
-- Modify existing rgb, hsl, and named colors.
-- Separate logic into useful functions, with an optional script for file IO.
+- Altering HSL/A Values for css sheets.
+- Altering color keywords for css sheets.
